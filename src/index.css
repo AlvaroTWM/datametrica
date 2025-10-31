@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Business Intelligence Corporate Design System - Dark Tech Aesthetic */
+
+@layer base {
+  :root {
+    /* Dark Tech Background - Deep Navy Technical */
+    --background: 231 36% 6%;
+    --foreground: 0 0% 95%;
+
+    /* Card Surfaces */
+    --card: 231 30% 10%;
+    --card-foreground: 0 0% 95%;
+
+    /* Popovers */
+    --popover: 231 30% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary - Power BI Yellow Professional */
+    --primary: 45 100% 51%;
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 38 95% 54%;
+    
+    /* Secondary - Subtle Dark Surface */
+    --secondary: 231 25% 14%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* Muted */
+    --muted: 231 20% 16%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Accent - Golden Amber Highlight */
+    --accent: 38 95% 54%;
+    --accent-foreground: 0 0% 0%;
+
+    /* Destructive */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 231 20% 20%;
+    --input: 231 20% 20%;
+    --ring: 45 100% 51%;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 51%), hsl(38 95% 54%));
+    --gradient-glow: radial-gradient(circle at center, hsl(45 100% 51% / 0.15), transparent 70%);
+    
+    /* Shadows with Glow */
+    --shadow-glow: 0 0 40px hsl(45 100% 51% / 0.3);
+    --shadow-glow-lg: 0 0 60px hsl(45 100% 51% / 0.4);
+    --shadow-card: 0 4px 24px hsl(231 36% 3% / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-['Inter',sans-serif] antialiased;
+    background-image: 
+      radial-gradient(circle at 20% 10%, hsl(45 100% 51% / 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, hsl(38 95% 54% / 0.06) 0%, transparent 40%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h3 {
+    @apply text-3xl md:text-4xl;
+  }
+}
+
+@layer components {
+  /* Gradient Text Effect */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  /* Glow Effect on Hover */
+  .glow-effect {
+    transition: var(--transition-smooth);
+  }
+  
+  .glow-effect:hover {
+    filter: drop-shadow(var(--shadow-glow));
+  }
+
+  /* Animated Border Gradient */
+  .border-gradient {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    transition: var(--transition-smooth);
+  }
+
+  .border-gradient:hover::before {
+    opacity: 1;
+  }
+
+  /* Animated Background */
+  .animated-bg {
+    background: linear-gradient(
+      -45deg,
+      hsl(231 36% 6%),
+      hsl(231 30% 8%),
+      hsl(45 100% 51% / 0.05),
+      hsl(38 95% 54% / 0.05)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Scroll Reveal Animation */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
